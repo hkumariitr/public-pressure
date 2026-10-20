@@ -1,0 +1,20 @@
+{
+  "name": "public-pressure-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Public Pressure API — Inshorts-style feed, search, polls, bookmarks and a realtime live-news channel.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed:publish": "node scripts/publish-demo.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^4.22.3",
+    "ws": "^8.22.0"
+  }
+}

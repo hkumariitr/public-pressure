@@ -1,0 +1,16 @@
+# ============================================================================
+# Lilly JFrog Artifactory — npm registry configuration.
+# Public npmjs is not used on Lilly machines; installs route through the
+# Lilly-NPM virtual repository in Artifactory.
+#
+# Usage: copy this file to `.npmrc` in each Node package (backend/, web/,
+# mobile/), then authenticate via the Artifactory front door to obtain your
+# identity token. See https://developer.lilly.com (search "Artifactory").
+# ============================================================================
+
+registry=https://elilillyco.jfrog.io/artifactory/api/npm/Lilly-NPM/
+
+# After running the "Set Me Up" / login flow, your token line is added here, e.g.:
+# //elilillyco.jfrog.io/artifactory/api/npm/Lilly-NPM/:_authToken=${ARTIFACTORY_TOKEN}
+
+always-auth=true

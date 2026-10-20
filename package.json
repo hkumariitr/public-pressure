@@ -1,0 +1,13 @@
+{
+  "name": "public-pressure",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Public Pressure — bilingual short-news app (backend + web + mobile) in the Inshorts mould.",
+  "workspaces": ["backend", "web", "mobile"],
+  "scripts": {
+    "dev:api": "npm --prefix backend start",
+    "dev:web": "npm --prefix web run dev",
+    "dev:mobile": "npm --prefix mobile start",
+    "publish:demo": "npm --prefix backend run seed:publish"
+  }
+}

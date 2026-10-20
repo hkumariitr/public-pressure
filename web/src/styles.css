@@ -1,0 +1,187 @@
+@import './brand-tokens.css';
+
+/* ============================================================================
+   Public Pressure — web app styles.
+   Discipline from the brand sheet: ink/white surfaces carry ~60%, paper/grey
+   ~30%, red ~10% (the P, the live dot, ONE action per screen). Archivo for
+   Latin, Hind for Devanagari, JetBrains Mono for data/meta.
+   ============================================================================ */
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--pp-paper);
+  color: var(--pp-ink);
+  font-family: var(--pp-font-latin);
+  font-size: var(--pp-fs-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  padding-top: env(safe-area-inset-top, 0);
+}
+:lang(hi) { font-family: var(--pp-font-deva); }
+
+a { color: var(--pp-slate); text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--pp-slate); outline-offset: 2px; }
+
+/* ---- App shell ---------------------------------------------------------- */
+.pp-app { display: flex; flex-direction: column; min-height: 100%; }
+
+/* ---- Header (ink band) -------------------------------------------------- */
+.pp-header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--pp-ink); color: var(--pp-white);
+  padding: 10px max(14px, env(safe-area-inset-left)) 10px max(14px, env(safe-area-inset-left));
+  padding-top: calc(10px + env(safe-area-inset-top, 0));
+  display: flex; align-items: center; gap: var(--pp-gap);
+}
+.pp-logo { height: 30px; width: auto; display: block; }
+.pp-logo-wrap { display: flex; align-items: baseline; gap: 10px; }
+.pp-wordmark {
+  font-weight: var(--pp-w-black); font-size: 15px; letter-spacing: 0.02em;
+  text-transform: uppercase; line-height: 1;
+}
+.pp-wordmark .pp-hi { display: block; font-family: var(--pp-font-deva);
+  font-weight: 700; font-size: 11px; color: var(--pp-red); text-transform: none;
+  letter-spacing: 0; margin-top: 2px; }
+.pp-header-spacer { flex: 1; }
+
+.pp-iconbtn {
+  background: transparent; border: 0; color: var(--pp-white);
+  width: 38px; height: 38px; border-radius: var(--pp-radius);
+  display: grid; place-items: center; font-size: 18px;
+}
+.pp-iconbtn[aria-pressed='true'] { color: var(--pp-red); }
+.pp-iconbtn:hover { background: rgba(255,255,255,0.08); }
+
+.pp-langtoggle {
+  border: 1px solid rgba(255,255,255,0.3); border-radius: 999px;
+  display: flex; overflow: hidden; font-family: var(--pp-font-mono); font-size: 12px;
+}
+.pp-langtoggle button { background: transparent; border: 0; color: var(--pp-white);
+  padding: 5px 10px; }
+.pp-langtoggle button[aria-pressed='true'] { background: var(--pp-white); color: var(--pp-ink); }
+
+/* ---- Live ticker (the one orchestrated motion) -------------------------- */
+.pp-ticker {
+  position: sticky; top: 58px; z-index: 15;
+  background: var(--pp-red); color: var(--pp-white);
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 14px; font-weight: var(--pp-w-semi); font-size: 14px;
+  animation: pp-slidedown 320ms cubic-bezier(.2,.7,.2,1);
+}
+.pp-ticker .pp-livetag {
+  font-family: var(--pp-font-mono); font-size: 11px; letter-spacing: 0.08em;
+  background: rgba(0,0,0,0.18); padding: 2px 7px; border-radius: 3px;
+}
+.pp-ticker a { color: var(--pp-white); text-decoration: underline; flex: 1;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@keyframes pp-slidedown { from { transform: translateY(-100%); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---- Feed --------------------------------------------------------------- */
+.pp-feed {
+  flex: 1; width: 100%; max-width: var(--pp-maxw);
+  margin: 0 auto; padding: var(--pp-gap) 14px calc(40px + env(safe-area-inset-bottom, 0));
+  display: flex; flex-direction: column; gap: var(--pp-gap);
+}
+
+/* ---- News card ---------------------------------------------------------- */
+.pp-card {
+  background: var(--pp-white); border: 1px solid var(--pp-paper-rule);
+  border-radius: var(--pp-radius-lg); overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.pp-card-media { aspect-ratio: 16/9; background: var(--pp-ink-06);
+  background-size: cover; background-position: center; }
+.pp-card-body { padding: var(--pp-pad); display: flex; flex-direction: column; gap: 10px; }
+
+.pp-eyebrow {
+  font-family: var(--pp-font-mono); font-size: var(--pp-fs-meta);
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--pp-slate);
+  display: flex; align-items: center; gap: 8px;
+}
+.pp-live-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--pp-live-dot);
+  box-shadow: 0 0 0 0 var(--pp-red-12); animation: pp-pulse 1.8s infinite;
+}
+.pp-breaking {
+  color: var(--pp-red); font-weight: 600;
+}
+@keyframes pp-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(227,18,43,0.5); }
+  70% { box-shadow: 0 0 0 7px rgba(227,18,43,0); }
+  100% { box-shadow: 0 0 0 0 rgba(227,18,43,0); }
+}
+
+.pp-card-title {
+  margin: 0; font-weight: var(--pp-w-black); font-size: var(--pp-fs-h3);
+  line-height: 1.18; letter-spacing: -0.01em;
+}
+:lang(hi) .pp-card-title { font-weight: 700; }
+.pp-card-text { margin: 0; color: var(--pp-ink); }
+.pp-card-source {
+  font-family: var(--pp-font-mono); font-size: var(--pp-fs-meta);
+  color: var(--pp-grey); display: flex; gap: 8px; flex-wrap: wrap;
+}
+
+.pp-card-actions {
+  display: flex; align-items: center; gap: 4px;
+  border-top: 1px solid var(--pp-paper-rule); padding: 8px var(--pp-pad);
+}
+.pp-card-actions .pp-spacer { flex: 1; }
+.pp-act {
+  background: transparent; border: 0; color: var(--pp-grey);
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 10px; border-radius: var(--pp-radius); font-size: 13px;
+}
+.pp-act:hover { background: var(--pp-ink-06); color: var(--pp-ink); }
+.pp-act[aria-pressed='true'] { color: var(--pp-red); }
+
+/* ---- Poll (red only on the leading bar) --------------------------------- */
+.pp-poll { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.pp-poll-q { font-weight: var(--pp-w-semi); }
+.pp-poll-opt {
+  position: relative; border: 1px solid var(--pp-paper-rule);
+  border-radius: var(--pp-radius); padding: 10px 12px; background: var(--pp-paper);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 14px; overflow: hidden;
+}
+.pp-poll-opt:not(:disabled):hover { border-color: var(--pp-slate); }
+.pp-poll-fill {
+  position: absolute; inset: 0 auto 0 0; background: var(--pp-ink-06); z-index: 0;
+  transition: width 500ms cubic-bezier(.2,.7,.2,1);
+}
+.pp-poll-opt.pp-lead .pp-poll-fill { background: var(--pp-red-12); }
+.pp-poll-opt > * { position: relative; z-index: 1; }
+.pp-poll-pct { font-family: var(--pp-font-mono); font-size: 12px; color: var(--pp-grey); }
+
+/* ---- Search & chips ----------------------------------------------------- */
+.pp-search { max-width: var(--pp-maxw); margin: 0 auto; width: 100%; padding: 14px; }
+.pp-search input {
+  width: 100%; padding: 12px 14px; font-size: 16px; font-family: inherit;
+  border: 1px solid var(--pp-paper-rule); border-radius: var(--pp-radius);
+  background: var(--pp-white); color: var(--pp-ink);
+}
+.pp-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.pp-chip {
+  font-family: var(--pp-font-mono); font-size: 12px; color: var(--pp-slate);
+  border: 1px solid var(--pp-paper-rule); background: var(--pp-white);
+  padding: 6px 10px; border-radius: 999px;
+}
+.pp-chip:hover { border-color: var(--pp-slate); }
+
+/* ---- Empty / status ----------------------------------------------------- */
+.pp-empty { text-align: center; color: var(--pp-grey); padding: 48px 20px; }
+.pp-empty strong { display: block; color: var(--pp-ink); font-weight: var(--pp-w-semi);
+  margin-bottom: 6px; }
+.pp-loadmore {
+  margin: 8px auto 0; display: block; background: var(--pp-ink); color: var(--pp-white);
+  border: 0; border-radius: var(--pp-radius); padding: 11px 20px; font-weight: var(--pp-w-semi);
+}
+.pp-status { text-align: center; font-family: var(--pp-font-mono); font-size: 12px;
+  color: var(--pp-grey); padding: 10px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

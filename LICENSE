@@ -1,0 +1,12 @@
+Public Pressure — internal starter.
+
+Copyright (c) 2026 Public Pressure. All rights reserved.
+
+This source is provided as an internal starter implementation. The Public
+Pressure brand assets — the पP mark, the colour palette, and the typographic
+system — are proprietary to Public Pressure and are not licensed for reuse
+outside Public Pressure products.
+
+The code is a clean-room reimplementation. It contains no third-party
+application's source code or assets. Third-party open-source dependencies are
+governed by their own licenses as resolved by the package manager.

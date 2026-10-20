@@ -1,0 +1,59 @@
+/* ============================================================================
+   PUBLIC PRESSURE — BRAND TOKENS (v1)
+   Derived verbatim from "Brand Foundations · V1" sheet.
+   Single source of truth for color, type and spacing across web + mobile.
+   ============================================================================ */
+
+:root {
+  /* --- Color -------------------------------------------------------------
+     Ratio guide: ~60% ink/white surfaces, ~30% paper/grey, ~10% red.
+     Red is reserved for the P, ONE action per screen, and the live dot. */
+  --pp-red:    #E3122B;  /* Pressure Red — primary accent, the P, CTAs, live */
+  --pp-ink:    #141414;  /* Ink — primary dark, text, backgrounds            */
+  --pp-white:  #FFFFFF;  /* White — प on dark, page surfaces                 */
+  --pp-paper:  #F3F2EF;  /* Paper — light backgrounds, cards                 */
+  --pp-slate:  #3D4F7C;  /* Slate — secondary: links, tags, charts           */
+  --pp-grey:   #6B6B6B;  /* Grey — meta text, timestamps, rules              */
+
+  /* Tints used only for rules/hovers — never introduce new hues. */
+  --pp-ink-80:  rgba(20, 20, 20, 0.80);
+  --pp-ink-06:  rgba(20, 20, 20, 0.06);
+  --pp-paper-rule: #E4E2DD;
+  --pp-red-12: rgba(227, 18, 43, 0.12);
+
+  /* --- Type --------------------------------------------------------------
+     Archivo (Latin), Hind (Devanagari), JetBrains Mono (data/meta).
+     x-heights of Archivo and Hind are matched so bilingual lines sit level. */
+  --pp-font-latin: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --pp-font-deva:  'Hind', 'Archivo', system-ui, sans-serif;
+  --pp-font-mono:  'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Weights (brand spec): Black 800 headlines, Semibold 600 UI, Regular 400 body */
+  --pp-w-black: 800;
+  --pp-w-semi:  600;
+  --pp-w-reg:   400;
+
+  /* Type scale — 1.25 (major third), headline-forward */
+  --pp-fs-display: 2.986rem;
+  --pp-fs-h1:  2.027rem;
+  --pp-fs-h2:  1.602rem;
+  --pp-fs-h3:  1.266rem;
+  --pp-fs-body: 1rem;
+  --pp-fs-sm:  0.84rem;
+  --pp-fs-meta: 0.75rem;   /* mono meta / tickers */
+
+  /* --- Space & shape ------------------------------------------------------ */
+  --pp-x: 12px;            /* "stem width" clear-space unit from the sheet    */
+  --pp-gap: 16px;
+  --pp-pad: 20px;
+  --pp-radius: 4px;        /* restrained; app icon uses the ink rounded square */
+  --pp-radius-lg: 10px;
+  --pp-maxw: 560px;        /* single-column card reading width                */
+
+  --pp-live-dot: var(--pp-red);
+}
+
+/* Dark surface helper — प is white on ink, P stays red. */
+.pp-on-ink   { background: var(--pp-ink);   color: var(--pp-white); }
+.pp-on-paper { background: var(--pp-paper); color: var(--pp-ink);   }
+.pp-on-white { background: var(--pp-white); color: var(--pp-ink);   }

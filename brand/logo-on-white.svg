@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Public Pressure">
+  <!-- PRIMARY · ON WHITE. प = public (white), P = pressure (red), shared stem. -->
+  <rect width="160" height="120" fill="#FFFFFF"/>
+  <!-- Devanagari प (public) -->
+  <text x="34" y="92" font-family="Hind, Archivo, sans-serif" font-weight="700"
+        font-size="104" fill="#141414" letter-spacing="-4">प</text>
+  <!-- Latin P (pressure) sharing the right stem of प -->
+  <text x="82" y="92" font-family="Archivo, sans-serif" font-weight="800"
+        font-size="104" fill="#E3122B" letter-spacing="-6">P</text>
+</svg>
